@@ -14,32 +14,42 @@
 
 class Node {
     
-    var value: Int
+    var value: Int?
     var next: Node?
     var previous: Node?
 
-    init(val: Int) {
-        self.value = val
-    }
 }
 
 class DoublyLinkedList {
 
-    var head: Node?
-    var tail: Node?
-    var isEmpty: Bool
     var first: Node?
     var last: Node?
     
+    var isEmpty: Bool {
+        return self.first == nil || self.last == nil
+    }
+    
     func append(value: Int) {
         
+        let addNode = Node()
+        addNode.value = value
+        
+        if first == nil {
+            
+            first = addNode
+            last = first
+            
+        } else {
+            
+            last?.next = addNode
+            addNode.previous = last
+            last = addNode
+        }
     }
 
-    
     func remove(at index: Int) {
         
     }
-
     
     func node(at index: Int) -> Node? {
         return nil
@@ -47,6 +57,20 @@ class DoublyLinkedList {
 
 }
 
+/* Test DoublyLinkedList Methos */
+let dlList = DoublyLinkedList()
+
+// Condition - Append
+dlList.append(value: 1)
+dlList.append(value: 2)
+dlList.append(value: 3)
+dlList.append(value: 4)
+print("==========================================")
+print("==== \(dlList.first?.value) ==============")
+print("==== \(dlList.first?.next?.value) ==============")
+print("==== \(dlList.last?.previous?.value) ==============")
+print("==== \(dlList.last?.value) ==============")
+print("==========================================")
 
 
 // DEFINITION - Queue: an abstract data type or collection in which the entities in the collection are kept in order and the principle (or only) operations on the collection are the addition of entities to the rear terminal position, known as enqueue, and removal of entities from the front terminal position, known as dequeue. This makes the queue a First-In-First-Out (FIFO) data structure.
