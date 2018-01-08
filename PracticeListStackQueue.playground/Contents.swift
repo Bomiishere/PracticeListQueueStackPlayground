@@ -96,6 +96,31 @@ class DoublyLinkedList {
     }
     
     func node(at index: Int) -> Node? {
+        
+        if first == nil {
+        
+            return nil
+            
+        } else {
+            
+            var checkNode: Node? = first
+            var indexCount = 0
+            
+            while checkNode != nil {
+                
+                if indexCount < index {
+                    
+                    indexCount += 1
+                    
+                } else if (indexCount == index) {
+                    //found it !
+                    return checkNode
+                }
+                
+                checkNode = checkNode?.next
+            }
+            
+        }
         return nil
     }
 
@@ -109,25 +134,32 @@ dlList.append(value: 1)
 dlList.append(value: 2)
 dlList.append(value: 3)
 dlList.append(value: 4)
-//print("==========================================")
-//print("==== \(String(describing: dlList.first?.previous?.value)) ==============")
-//print("==== \(String(describing: dlList.first?.value)) ==============")
-//print("==== \(String(describing: dlList.first?.next?.value)) ==============")
-//print("==== \(String(describing: dlList.last?.previous?.value)) ==============")
-//print("==== \(String(describing: dlList.last?.value)) ==============")
-//print("==== \(String(describing: dlList.last?.next?.value)) ==============")
-//print("==========================================")
+print("==========================================")
+print("==== \(String(describing: dlList.first?.previous?.value)) ==============")
+print("==== \(String(describing: dlList.first?.value)) ==============")
+print("==== \(String(describing: dlList.first?.next?.value)) ==============")
+print("==== \(String(describing: dlList.last?.previous?.value)) ==============")
+print("==== \(String(describing: dlList.last?.value)) ==============")
+print("==== \(String(describing: dlList.last?.next?.value)) ==============")
 
 // Condition 2 - Remove
 dlList.remove(at: 3)
 
 print("==========================================")
-print("==== First  pre val:\(String(describing: dlList.first?.previous?.value)) ==============")
-print("==== First      val:\(String(describing: dlList.first?.value)) ==============")
-print("==== First next val:\(String(describing: dlList.first?.next?.value)) ==============")
-print("==== Last   pre val:\(String(describing: dlList.last?.previous?.value)) ==============")
-print("==== Last       val:\(String(describing: dlList.last?.value)) ==============")
-print("==== Last  next val:\(String(describing: dlList.last?.next?.value)) ==============")
+print("remove an 3rd object")
+//print("==== First  pre val:\(String(describing: dlList.first?.previous?.value)) ==============")
+//print("==== First      val:\(String(describing: dlList.first?.value)) ==============")
+//print("==== First next val:\(String(describing: dlList.first?.next?.value)) ==============")
+//print("==== Last   pre val:\(String(describing: dlList.last?.previous?.value)) ==============")
+//print("==== Last       val:\(String(describing: dlList.last?.value)) ==============")
+//print("==== Last  next val:\(String(describing: dlList.last?.next?.value)) ==============")
+print("==========================================")
+
+// Condition 3 - Selected Node
+print("==== Selected index val:\(String(describing: dlList.node(at: 0)?.value)) ==============")
+print("==== Selected index val:\(String(describing: dlList.node(at: 1)?.value)) ==============")
+print("==== Selected index val:\(String(describing: dlList.node(at: 2)?.value)) ==============")
+print("==== Selected index val:\(String(describing: dlList.node(at: 3)?.value)) ==============")
 print("==========================================")
 
 
