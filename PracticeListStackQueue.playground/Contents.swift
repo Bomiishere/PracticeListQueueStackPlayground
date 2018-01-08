@@ -146,7 +146,7 @@ print("==== \(String(describing: dlList.last?.next?.value)) ==============")
 dlList.remove(at: 3)
 
 print("==========================================")
-print("remove an 3rd object")
+print("remove an 3rd node")
 //print("==== First  pre val:\(String(describing: dlList.first?.previous?.value)) ==============")
 //print("==== First      val:\(String(describing: dlList.first?.value)) ==============")
 //print("==== First next val:\(String(describing: dlList.first?.next?.value)) ==============")
