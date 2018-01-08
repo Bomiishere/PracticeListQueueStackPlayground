@@ -51,11 +51,16 @@ class DoublyLinkedList {
         
         if first == nil {
             return
-            
         } else {
             
             var checkNode: Node? = first
             var indexCount = 0
+            
+            if index == 0 {
+                first = first?.next
+                first?.previous = nil
+                return
+            }
             
             while checkNode != nil {
                 
@@ -66,23 +71,10 @@ class DoublyLinkedList {
                 } else if (indexCount == index) {
                     //found it !
                     if let nextNode = checkNode?.next {
-                        
                         nextNode.previous = checkNode?.previous
-                        
-                    } else {
-                        //last one
-                        last = checkNode?.previous
-                        last?.next = nil
-                        break
                     }
                     if let previousNode = checkNode?.previous {
-                        
                         previousNode.next = checkNode?.next
-                        
-                    } else {
-                        // first one
-                        first = first?.next
-                        first?.previous = nil
                     }
                     indexCount += 1
                     break
@@ -119,7 +111,7 @@ dlList.append(value: 4)
 //print("==========================================")
 
 // Condition 2 - Remove
-dlList.remove(at: 3)
+dlList.remove(at: 2)
 
 print("==========================================")
 print("==== First  pre val:\(String(describing: dlList.first?.previous?.value)) ==============")
