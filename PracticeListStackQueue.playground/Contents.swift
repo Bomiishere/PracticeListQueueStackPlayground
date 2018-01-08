@@ -49,6 +49,50 @@ class DoublyLinkedList {
 
     func remove(at index: Int) {
         
+        if first == nil {
+            return
+            
+        } else {
+            
+            var checkNode: Node? = first
+            var indexCount = 0
+            
+            while checkNode != nil {
+                
+                if indexCount < index {
+                    
+                    indexCount += 1
+                    
+                } else if (indexCount == index) {
+                    //found it !
+                    if let nextNode = checkNode?.next {
+                        
+                        nextNode.previous = checkNode?.previous
+                        
+                    } else {
+                        //last one
+                        last = checkNode?.previous
+                        last?.next = nil
+                        break
+                    }
+                    if let previousNode = checkNode?.previous {
+                        
+                        previousNode.next = checkNode?.next
+                        
+                    } else {
+                        // first one
+                        first = first?.next
+                        first?.previous = nil
+                    }
+                    indexCount += 1
+                    break
+                }
+                
+                checkNode = checkNode?.next
+            }
+            
+        }
+        
     }
     
     func node(at index: Int) -> Node? {
@@ -60,18 +104,30 @@ class DoublyLinkedList {
 /* Test DoublyLinkedList Methos */
 let dlList = DoublyLinkedList()
 
-// Condition - Append
+// Condition 1 - Append
 dlList.append(value: 1)
 dlList.append(value: 2)
 dlList.append(value: 3)
 dlList.append(value: 4)
+//print("==========================================")
+//print("==== \(String(describing: dlList.first?.previous?.value)) ==============")
+//print("==== \(String(describing: dlList.first?.value)) ==============")
+//print("==== \(String(describing: dlList.first?.next?.value)) ==============")
+//print("==== \(String(describing: dlList.last?.previous?.value)) ==============")
+//print("==== \(String(describing: dlList.last?.value)) ==============")
+//print("==== \(String(describing: dlList.last?.next?.value)) ==============")
+//print("==========================================")
+
+// Condition 2 - Remove
+dlList.remove(at: 3)
+
 print("==========================================")
-print("==== \(String(describing: dlList.first?.previous?.value)) ==============")
-print("==== \(String(describing: dlList.first?.value)) ==============")
-print("==== \(String(describing: dlList.first?.next?.value)) ==============")
-print("==== \(String(describing: dlList.last?.previous?.value)) ==============")
-print("==== \(String(describing: dlList.last?.value)) ==============")
-print("==== \(String(describing: dlList.last?.next?.value)) ==============")
+print("==== First  pre val:\(String(describing: dlList.first?.previous?.value)) ==============")
+print("==== First      val:\(String(describing: dlList.first?.value)) ==============")
+print("==== First next val:\(String(describing: dlList.first?.next?.value)) ==============")
+print("==== Last   pre val:\(String(describing: dlList.last?.previous?.value)) ==============")
+print("==== Last       val:\(String(describing: dlList.last?.value)) ==============")
+print("==== Last  next val:\(String(describing: dlList.last?.next?.value)) ==============")
 print("==========================================")
 
 
